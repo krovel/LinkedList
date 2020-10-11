@@ -6,7 +6,7 @@ public interface AllNode<K> {
 
 	public void setKey(K key);
 
-	public AllNode<K> getNext();
+	public AllNode getNext();
 
 	public void setNext(AllNode next);
 }

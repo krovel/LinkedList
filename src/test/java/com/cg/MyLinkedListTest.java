@@ -52,4 +52,22 @@ public class MyLinkedListTest {
 				&& myLinkedList.getTail().equals(thirdNode);
 		assertTrue(result);
 	}
+	@Test
+	public void given3NumberWhenInseringInBetweenShouldPassLinkedListTest() {
+		MyNode<Integer> firstNode = new MyNode<Integer>(56);
+		MyNode<Integer> secondNode = new MyNode<Integer>(30);
+		MyNode<Integer> thirdNode = new MyNode<Integer>(70);
+
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.append(firstNode);
+		myLinkedList.append(thirdNode);
+		
+		myLinkedList.insert(firstNode,secondNode);
+		
+		myLinkedList.printMyList();
+		boolean result = myLinkedList.getHead().equals(firstNode) && myLinkedList.getHead().getNext().equals(secondNode)
+				&& myLinkedList.getTail().equals(thirdNode);
+		assertTrue(result);
+	}
+
 }

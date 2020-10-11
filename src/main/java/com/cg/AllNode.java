@@ -2,7 +2,7 @@ package com.cg;
 
 public interface AllNode<K> {
 
-	public K getKey();
+	public <K> K getKey();
 
 	public void setKey(K key);
 

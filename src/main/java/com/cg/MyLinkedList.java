@@ -32,6 +32,28 @@ public class MyLinkedList<K> {
 		}
 	}
 
+	public <K extends Comparable<K>> void addOrdered(AllNode newNode) {
+		if (head == null || (((Comparable<K>) head.getKey()).compareTo((K) newNode.getKey()) >= 0)) {
+			newNode.setNext(head);
+			this.head = newNode;
+		} else {
+			AllNode tempNode = head;
+			while (tempNode.getNext() != null && (((Comparable<K>) tempNode.getNext().getKey()).compareTo((K) newNode.getKey())) < 0) {
+				tempNode = tempNode.getNext();
+			}
+			if(tempNode.getNext() == null) {
+				AllNode myNode=search(tempNode.getKey());
+				myNode.setNext(newNode);
+				this.tail=newNode;
+			}
+			else {
+				newNode.setNext(tempNode.getNext());
+				AllNode myNode=search(tempNode.getKey());
+				myNode.setNext(newNode);
+			}				
+		}
+	}
+
 	public void append(AllNode newNode) {
 		if (head == null)
 			this.head = newNode;
@@ -80,7 +102,7 @@ public class MyLinkedList<K> {
 		return tempNode;
 	}
 
-	public AllNode search(K key) {
+	public <K> AllNode search(K key) {
 		AllNode tempNode = head;
 		while (!tempNode.equals(tail)) {
 			if (tempNode.getKey() == key) {

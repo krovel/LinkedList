@@ -97,4 +97,13 @@ public class MyLinkedList<K> {
 			return null;
 		}
 	}
+	
+	public void insertAfter(K myKey, K newKey) {
+		AllNode myNode = search(myKey);
+		if (myNode != null) {
+			insert(myNode, new MyNode<K>(newKey));
+			System.out.println("Element inserted");
+		} else
+			System.out.println("Element not inserted");
+	}
 }

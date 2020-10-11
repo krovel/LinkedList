@@ -6,7 +6,6 @@ package com.cg;
 public class MyLinkedList<K> {
 	private AllNode head;
 	private AllNode tail;
-	private static AllNode tempNode;
 
 	public AllNode getHead() {
 		return head;
@@ -16,25 +15,23 @@ public class MyLinkedList<K> {
 		return tail;
 	}
 
-	public static AllNode getTempNode() {
-		return tempNode;
-	}
-
 	public MyLinkedList() {
 		this.head = head;
 		this.tail = tail;
 	}
+
 	public void add(AllNode newNode) {
 		if (tail == null)
 			this.tail = newNode;
 		if (head == null)
 			this.head = newNode;
 		else {
-			tempNode = this.head;
+			AllNode tempNode = this.head;
 			this.head = newNode;
 			newNode.setNext(tempNode);
 		}
 	}
+
 	public void append(AllNode newNode) {
 		if (head == null)
 			this.head = newNode;
@@ -45,27 +42,40 @@ public class MyLinkedList<K> {
 			this.tail = newNode;
 		}
 	}
+
 	public void printMyList() {
 		System.out.print("My List is : ");
 		StringBuffer myList = new StringBuffer();
 		AllNode tempNode = head;
-		while (tempNode.getNext() != null) {
+		while (!tempNode.equals(tail)) {
 			myList.append(tempNode.getKey());
-			if (!tempNode.equals(tail))
-				myList.append("->");
+			myList.append("->");
 			tempNode = tempNode.getNext();
 		}
 		myList.append(tempNode.getKey());
 		System.out.println(myList);
 	}
+
 	public void insert(AllNode myNode, AllNode newNode) {
 		AllNode tempNode = myNode.getNext();
 		myNode.setNext(newNode);
 		newNode.setNext(tempNode);
 	}
+
 	public AllNode deleteFirst() {
 		AllNode tempNode = this.head;
 		this.head = head.getNext();
+		System.out.println("Deleted element is :" + tempNode.getKey());
+		return tempNode;
+	}
+
+	public AllNode deleteLast() {
+		AllNode tempNode = head;
+		while (!tempNode.getNext().equals(tail)) {
+			tempNode = tempNode.getNext();
+		}
+		this.tail = tempNode;
+		tempNode = tempNode.getNext();
 		System.out.println("Deleted element is :" + tempNode.getKey());
 		return tempNode;
 	}

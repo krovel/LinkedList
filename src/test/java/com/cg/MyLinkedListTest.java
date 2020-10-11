@@ -69,5 +69,20 @@ public class MyLinkedListTest {
 				&& myLinkedList.getTail().equals(thirdNode);
 		assertTrue(result);
 	}
+	@Test
+	public void given3NumberWhenDeletedFirstElementShouldReturnFirstElement() {
+		MyNode<Integer> firstNode = new MyNode<Integer>(56);
+		MyNode<Integer> secondNode = new MyNode<Integer>(30);
+		MyNode<Integer> thirdNode = new MyNode<Integer>(70);
 
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.append(firstNode);
+		myLinkedList.append(secondNode);
+		myLinkedList.append(thirdNode);
+
+		AllNode deletedNode = myLinkedList.deleteFirst();
+		System.out.print("After deleting first element, ");
+		myLinkedList.printMyList();
+		assertEquals(firstNode, deletedNode);
+	}
 }

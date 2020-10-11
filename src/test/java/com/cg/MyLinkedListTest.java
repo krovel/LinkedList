@@ -3,12 +3,21 @@
  */
 package com.cg;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
-import com.cg.MyLinkedList;
-
-import static org.junit.Assert.*;
-
 public class MyLinkedListTest {
-  
+
+	@Test
+	public void given3NumberWhenLinkedShouldPassLinkedListTest() {
+		MyNode<Integer> firstNode = new MyNode<Integer>(56);
+		MyNode<Integer> secondNode = new MyNode<Integer>(30);
+		MyNode<Integer> thirdNode = new MyNode<Integer>(70);
+
+		firstNode.setNext(secondNode);
+		secondNode.setNext(thirdNode);
+		boolean result = firstNode.getNext().equals(secondNode) && secondNode.getNext().equals(thirdNode);
+
+		assertTrue(result);
+	}
 }

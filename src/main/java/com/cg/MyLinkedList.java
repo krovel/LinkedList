@@ -97,13 +97,36 @@ public class MyLinkedList<K> {
 			return null;
 		}
 	}
-	
+
 	public void insertAfter(K myKey, K newKey) {
 		AllNode myNode = search(myKey);
 		if (myNode != null) {
-			insert(myNode, new MyNode<K>(newKey));
+			insert(myNode, new MyNode(newKey));
 			System.out.println("Element inserted");
 		} else
 			System.out.println("Element not inserted");
+	}
+
+	public void deleteElement(K key) {
+		AllNode deleteNode = search(key);
+		AllNode tempNode = head;
+		if (deleteNode != null) {
+			while (!tempNode.getNext().equals(deleteNode)) {
+				tempNode = tempNode.getNext();
+			}
+			tempNode.setNext(deleteNode.getNext());
+			System.out.println("Element deleted");
+		} else
+			System.out.println("Element not deleted");
+	}
+
+	public int size() {
+		int size = 0;
+		AllNode tempNode = head;
+		while (tempNode != null) {
+			size++;
+			tempNode = tempNode.getNext();
+		}
+		return size;
 	}
 }
